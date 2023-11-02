@@ -82,3 +82,7 @@ body,
 		font-feature-settings: 'rlig' 1, 'calt' 1;
 	}
 }
+
+.container {
+	@apply mx-auto px-4 md:px-6 max-w-screen-2xl;
+}

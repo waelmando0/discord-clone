@@ -1,5 +1,13 @@
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-	return <div>{children}</div>;
-};
+interface AuthLayoutProps {
+	children: React.ReactNode;
+}
 
-export default AuthLayout;
+export default function AuthLayout({ children }: AuthLayoutProps) {
+	return (
+		<section className='container'>
+			<div className='flex h-[80vh] items-center justify-center'>
+				{children}
+			</div>
+		</section>
+	);
+}
