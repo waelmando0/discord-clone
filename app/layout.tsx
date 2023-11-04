@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
+import { ThemeProvider } from '@/components/providers/theme-provider';
 
 export const metadata: Metadata = {
 	title: {
@@ -34,15 +35,24 @@ export default function RootLayout({
 }) {
 	return (
 		<ClerkProvider>
-			<html lang='en'>
+			<html lang='en' suppressHydrationWarning>
 				<body
 					className={cn(
-						'min-h-screen bg-background font-sans antialiased',
+						'min-h-screen bg-background antialiased dark:bg-[#313338]',
 						fontSans.variable
 					)}
 				>
 					<div className='relative flex min-h-screen flex-col'>
-						<main className='flex-1'>{children}</main>
+						<main className='flex-1'>
+							<ThemeProvider
+								attribute='class'
+								defaultTheme='dark'
+								enableSystem={false}
+								storageKey='discord-theme'
+							>
+								{children}
+							</ThemeProvider>
+						</main>
 					</div>
 				</body>
 			</html>
