@@ -82,8 +82,8 @@ model Channel {
   type ChannelType @default(TEXT)
 
 
-  profilId String
-  profile Profile @relation(fields: [profilId], references: [id], onDelete: Cascade)
+  profileId String
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
 
   serverId String
@@ -92,6 +92,6 @@ model Channel {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([profilId])
+  @@index([profileId])
   @@index([serverId])
 }
