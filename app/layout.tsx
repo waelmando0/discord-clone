@@ -6,6 +6,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 import { ThemeProvider } from '@/components/providers/theme-provider';
+import { ModalProvider } from '@/components/providers/modal-provider';
 
 export const metadata: Metadata = {
 	title: {
@@ -49,6 +50,7 @@ export default function RootLayout({
 								defaultTheme='dark'
 								enableSystem={false}
 							>
+								<ModalProvider />
 								{children}
 							</ThemeProvider>
 						</main>
