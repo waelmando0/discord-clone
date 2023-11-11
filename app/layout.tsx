@@ -44,16 +44,14 @@ export default function RootLayout({
 					)}
 				>
 					<div className='relative flex min-h-screen flex-col'>
-						<main className='flex-1'>
-							<ThemeProvider
-								attribute='class'
-								defaultTheme='dark'
-								enableSystem={false}
-							>
-								<ModalProvider />
-								{children}
-							</ThemeProvider>
-						</main>
+						<ThemeProvider
+							attribute='class'
+							defaultTheme='dark'
+							enableSystem={false}
+						>
+							<ModalProvider />
+							{children}
+						</ThemeProvider>
 					</div>
 				</body>
 			</html>
