@@ -1,7 +1,7 @@
 'use client';
 
 import { ServerWithMembersWithProfiles } from '@/types';
-import { MemberRole, Server, Member } from '@prisma/client';
+import { MemberRole } from '@prisma/client';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -85,7 +85,10 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
 						</DropdownMenuItem>
 					)}
 					{!isAdmin && (
-						<DropdownMenuItem className='text-rose-500 px-3 py-2 text-sm cursor-pointer'>
+						<DropdownMenuItem
+							className='text-rose-500 px-3 py-2 text-sm cursor-pointer'
+							onClick={() => onOpen('leaveServer', { server })}
+						>
 							Leave Server
 							<LogOut className='w-5 h-5 ml-auto' />
 						</DropdownMenuItem>
