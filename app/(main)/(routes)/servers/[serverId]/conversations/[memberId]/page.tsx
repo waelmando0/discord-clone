@@ -1,6 +1,11 @@
-import React from 'react';
+interface MemberIdPage {
+	params: {
+		memberId: string;
+		serverId: string;
+	};
+}
 
-const MemberIdPage = () => {
+const MemberIdPage = ({ params }: MemberIdPage) => {
 	return <div>Member Id Page</div>;
 };
 
