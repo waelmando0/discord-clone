@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { ModalProvider } from '@/components/providers/modal-provider';
+import { SocketProvider } from '@/components/providers/socket-provider';
 
 export const metadata: Metadata = {
 	title: {
@@ -49,8 +50,10 @@ export default function RootLayout({
 							defaultTheme='dark'
 							enableSystem={false}
 						>
-							<ModalProvider />
-							{children}
+							<SocketProvider>
+								<ModalProvider />
+								{children}
+							</SocketProvider>
 						</ThemeProvider>
 					</div>
 				</body>
