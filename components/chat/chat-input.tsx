@@ -10,6 +10,8 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Plus, Smile } from 'lucide-react';
 import { Input } from '../ui/input';
 import { useModal } from '@/hooks/use-modal-store';
+import { EmojiPicker } from '@/components/emoji-picker';
+import { useRouter } from 'next/navigation';
 
 interface ChatInputProps {
 	apiUrl: string;
@@ -22,6 +24,8 @@ const formSchema = z.object({ content: z.string().min(1) });
 
 const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 	const { onOpen } = useModal();
+	const router = useRouter();
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -41,6 +45,7 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 			await axios.post(url, values);
 
 			form.reset();
+			router.refresh();
 		} catch (error) {
 			console.log(error);
 		}
@@ -58,8 +63,8 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 								<div className='relative p-4 pb-6'>
 									<button
 										type='button'
-										className='absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600 dark:hover:bg-zinc-300 transition rounded-full p-1 flex items-center justify-center'
 										onClick={() => onOpen('messageFile', { apiUrl, query })}
+										className='absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600 dark:hover:bg-zinc-300 transition rounded-full p-1 flex items-center justify-center'
 									>
 										<Plus className='text-white dark:text-[#313338]' />
 									</button>
@@ -71,6 +76,9 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 										}`}
 										{...field}
 									/>
+									<div className='absolute top-7 right-8'>
+										<EmojiPicker />
+									</div>
 								</div>
 							</FormControl>
 						</FormItem>

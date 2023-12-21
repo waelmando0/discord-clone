@@ -8,6 +8,7 @@ import { siteConfig } from '@/config/site';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { ModalProvider } from '@/components/providers/modal-provider';
 import { SocketProvider } from '@/components/providers/socket-provider';
+import { QueryProvider } from '@/components/providers/query-provider';
 
 export const metadata: Metadata = {
 	title: {
@@ -38,24 +39,17 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang='en' suppressHydrationWarning>
-				<body
-					className={cn(
-						'min-h-screen bg-background antialiased dark:bg-[#313338]',
-						fontSans.variable
-					)}
-				>
-					<div className='relative flex min-h-screen flex-col'>
-						<ThemeProvider
-							attribute='class'
-							defaultTheme='dark'
-							enableSystem={false}
-						>
-							<SocketProvider>
-								<ModalProvider />
-								{children}
-							</SocketProvider>
-						</ThemeProvider>
-					</div>
+				<body className={cn(fontSans.variable, 'bg-white dark:bg-[#313338]')}>
+					<ThemeProvider
+						attribute='class'
+						defaultTheme='dark'
+						enableSystem={false}
+					>
+						<SocketProvider>
+							<ModalProvider />
+							<QueryProvider>{children}</QueryProvider>
+						</SocketProvider>
+					</ThemeProvider>
 				</body>
 			</html>
 		</ClerkProvider>
